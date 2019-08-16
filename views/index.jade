@@ -1,0 +1,142 @@
+extends layout
+
+block content
+  div.card(style="width: 850px; height: 540px;")
+    h5.card-header
+      | Most Popular Times
+    div.card-body
+      p.card-text
+        | Gain insight on which time of the day your product is most popular.
+      canvas#myCanvas(width='800', height='400')
+    div.card-footer.alert.alert-success(role="alert")
+      | This product is most often used between 1:00 - 2:00pm
+
+  script.
+    const times = [
+      new Date(2019, 8, 8, 6),
+      new Date(2019, 8, 8, 7),
+      new Date(2019, 8, 8, 8),
+      new Date(2019, 8, 8, 9),
+      new Date(2019, 8, 8, 9),
+      new Date(2019, 8, 8, 9),
+      new Date(2019, 8, 8, 10),
+      new Date(2019, 8, 8, 11),
+      new Date(2019, 8, 8, 11),
+      new Date(2019, 8, 8, 13),
+      new Date(2019, 8, 8, 13),
+      new Date(2019, 8, 8, 13),
+      new Date(2019, 8, 8, 13),
+      new Date(2019, 8, 8, 13),
+      new Date(2019, 8, 8, 14),
+      new Date(2019, 8, 8, 14),
+      new Date(2019, 8, 8, 17),
+      new Date(2019, 8, 8, 18),
+      new Date(2019, 8, 8, 18),
+      new Date(2019, 8, 8, 18),
+      new Date(2019, 8, 8, 20),
+      new Date(2019, 8, 8, 21),
+      new Date(2019, 8, 8, 21),
+      new Date(2019, 8, 8, 22),
+      new Date(2019, 8, 8, 23)
+    ];
+
+    var dataSet = {};
+    var i;
+
+    for (i = 0; i < times.length; i++) {
+      var time = times[i].getHours();
+
+      if (dataSet[time] != null) {
+        dataSet[time] = dataSet[time] + 1;
+      } else {
+        dataSet[time] = 1;
+      }
+    } 
+
+    var keysArray = Object.keys(dataSet);
+    let timesArray = [];
+    var counter = 0;
+    var i = 0;
+
+    while (i < keysArray.length) {
+      
+      if (counter == keysArray[i]) {
+        timesArray.push(dataSet[keysArray[i]]);
+        counter+=1;
+        i+=1;
+      } else {
+        timesArray.push(0);
+        counter+=1;
+      }
+    }
+
+    let tempArray = timesArray.slice(0, 6);
+    timesArray = timesArray.slice(6);
+    timesArray = timesArray.concat(tempArray);
+
+    let labels = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5]
+    let max = Math.max(...timesArray);
+    let popTimeMin = labels[timesArray.indexOf(max)];
+    let popTimeMax = labels[timesArray.indexOf(max) + 1];
+
+    window.onload = function () {
+      var ctx = document.getElementById('myCanvas').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{ 
+                data: timesArray,
+                borderColor: "#c45850",
+                label: '',
+                fill: false,
+                lineTension: 0
+              }
+            ]
+          },
+
+          options: {
+            title: {
+              display: false,
+              fontSize: 16,
+              text: 'Most Popular Times'
+            },
+            responsive: false,
+            legend: {
+              display: false
+            },
+            //- xAxisID: "x-axis-0",
+            annotation: {
+              annotations: [
+                {
+                  type: "line",
+                  mode: "vertical",
+                  scaleID: "x-axis-0",
+                  value: 12,
+                  borderColor: "red",
+                  borderWidth: 2,
+                  label: {
+                    backgroundColor: "red",
+                    content: "Noon",
+                    enabled: true
+                  }
+                },
+
+                {
+                  type: "line",
+                  mode: "vertical",
+                  scaleID: "x-axis-0",
+                  value: 00,
+                  borderColor: "red",
+                  borderWidth: 2,
+                  label: {
+                    backgroundColor: "red",
+                    content: "Midnight",
+                    enabled: true
+                  }
+                }
+              ]
+            }
+          }
+      });
+    };
