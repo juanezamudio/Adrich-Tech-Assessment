@@ -22,7 +22,7 @@ def create_hashtable(target):
 def check_if_empty_input(initial, target):
     """
     Checks whether initial or target lists are empty
-    
+
     Arguments:
         initial: list -- The initial arrangement list
         target: list -- The target arrangement list
@@ -47,22 +47,36 @@ def check_correct(initial, target):
 
     return True
 
+def swap_positions(initial, temp, temp_spot, empty_spot):
+        """
+        Swaps two cars in the initial arrangement list
+        
+        Arguments:
+            initial : list -- The initial arrangement list
+            temp : int -- The car that is being replaced
+            temp_spot : int -- The space of the car that is being replaced
+            empty_spot : int -- The space of the empty spot
+        """
+        initial[temp_spot] = initial[empty_spot]
+        initial[empty_spot] = temp
 
 def print_directions(initial, target):
     """
-    
+    Prints a sequence of steps to take to get from the initial
+    arrangement of car positions to the target arrangement of
+    car positions
     
     Arguments:
-        initial {[type]} -- [description]
-        target {[type]} -- [description]
+        initial: list -- The initial arrangement list
+        target: list -- The target arrangement list
     """
     if (check_if_empty_input(initial, target)):
         print("\nNo initial or target positions inputted. Please input two lists.")
         return
-    else:
-        if (check_correct(initial, target)):
-            print("\nCars already in target position. No moves needed!")
-            return
+    
+    if (check_correct(initial, target)):
+        print("\nCars already in target position. No moves needed!")
+        return
         
 
     hashtable = create_hashtable(target)
@@ -76,7 +90,7 @@ def print_directions(initial, target):
 
     --> Despite a difference in steps taken to achieve target arrangement,
     my solution still reaches the target arrangement with a minimum number 
-    of swaps and runs in O(n) time
+    of swaps and an O(n) runtime
 
     Example:
 
@@ -99,48 +113,41 @@ def print_directions(initial, target):
 
         temp = initial[len(initial)/2]
         temp_spot = initial.index(temp)
-        empty = initial.index(0)
-        initial[len(initial)/2] = initial[empty]
-        initial[empty] = temp
+        empty_spot = initial.index(0)
+        initial[len(initial)/2] = initial[empty_spot]
+        initial[empty_spot] = temp
 
-        print("Move car from space " + str(temp_spot) + " to space " + str(empty))
-
+        print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
 
     values = hashtable.values()
     i = 0
-    while i < len(initial):
+    while (not check_correct(initial, target)):
+        empty_spot = initial.index(0)
+        check_spot = True
         
-        if (hashtable[0] == initial.index(0) and i < len(initial)-1):
+        if (hashtable[0] == empty_spot):
             counter = i
-            check_spot = True
             
             while check_spot:
-                empty = initial.index(0)
                 temp = initial[counter]
-                temp_spot = initial.index(initial[counter])
+                temp_spot = initial.index(temp)
 
                 if (temp_spot != hashtable[temp]):
                     check_spot = False
 
                 counter -= 1
             else:
-                initial[temp_spot] = initial[empty]
-                initial[empty] = temp
-
-            i+=1
-
-            print("Move car from space " + str(temp_spot) + " to space " + str(empty))
+                swap_positions(initial, temp, temp_spot, empty_spot)
+                i+=1
+                print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
         else:
             temp = initial[initial.index(values.index(initial.index(0)))]
             temp_spot = initial.index(temp)
             counter = 1
-            check_spot = True
 
-            if (temp_spot == hashtable[0] and i < len(initial)-2):
-                
+            if (temp_spot == hashtable[0]):
                 while check_spot:
-                    empty = initial.index(0)
-                    temp = initial[len(initial)-counter]
+                    temp = initial[len(initial) - counter]
                     temp_spot = initial.index(temp)
                     
                     if (temp_spot != hashtable[temp] and temp != 0):
@@ -148,25 +155,12 @@ def print_directions(initial, target):
 
                     counter += 1
                 else:
-                    initial[temp_spot] = initial[empty]
-                    initial[empty] = temp
+                    swap_positions(initial, temp, temp_spot, empty_spot)
             else:
-                empty = initial.index(0)
-                initial[temp_spot] = initial[empty]
-                initial[empty] = temp
-
+                swap_positions(initial, temp, temp_spot, empty_spot)
                 i+=1
-                
-            
-            print("Move car from space " + str(temp_spot) + " to space " + str(empty))
-    
-        if (check_correct(initial, target)):
-            print("\nCars in target position!")
-            print(initial)
-            print(target)
-            break
-    
-    if (not check_correct(initial, target)):
-        print("\nCars not in target position!")
+                print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
+    else:
+        print("\nCars in target position!")
         print(initial)
         print(target)

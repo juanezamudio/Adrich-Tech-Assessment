@@ -174,7 +174,7 @@ class TestPrintDirections(unittest.TestCase):
         initial = [1,3,5,4,0,2]
         random.shuffle(initial)
 
-        target = [0,1,2,3,4,5]
+        target = [3,2,5,1,0,4]
         random.shuffle(target)
 
         print(initial)
@@ -191,7 +191,24 @@ class TestPrintDirections(unittest.TestCase):
         initial = [1,4,2,0,3,5]
         random.shuffle(initial)
 
-        target = [0,1,2,3,4,5]
+        target = [3,2,5,1,0,4]
+        random.shuffle(target)
+
+        print(initial)
+        print(target)
+
+        print_directions(initial, target)
+
+        self.assertTrue(check_correct(initial,target))
+
+        print("-------------------------------------")
+
+    def test_print_directions_random_five(self):
+        print("\n")
+        initial = [3,1,2,4,5,0]
+        random.shuffle(initial)
+
+        target = [4,5,1,2,3,0]
         random.shuffle(target)
 
         print(initial)
