@@ -90,7 +90,7 @@ def print_directions(initial, target):
 
     --> Despite a difference in steps taken to achieve target arrangement,
     my solution still reaches the target arrangement with a minimum number 
-    of swaps and an O(n) runtime
+    of swaps and an O(n) runtime. It also takes a lists of any size.
 
     Example:
 

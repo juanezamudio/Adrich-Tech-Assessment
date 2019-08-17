@@ -220,5 +220,22 @@ class TestPrintDirections(unittest.TestCase):
 
         print("-------------------------------------")
 
+    def test_print_directions_random_six(self):
+        print("\n")
+        initial = [3,9,1,10,2,8,4,5,0,6,7]
+        random.shuffle(initial)
+
+        target = [4,7,5,8,1,6,9,2,10,3,0]
+        random.shuffle(target)
+
+        print(initial)
+        print(target)
+
+        print_directions(initial, target)
+
+        self.assertTrue(check_correct(initial,target))
+
+        print("-------------------------------------")
+
     if __name__ == '__main__':
         unittest.main()
