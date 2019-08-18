@@ -19,12 +19,12 @@ This should pop up a window in your browser with `localhost:3000` as the web add
 
 You should see a graph that looks like this:
 
-![My Graph][/my-graph.png]
+![My Graph][my-graph.png]
 
 
 Below is the graph that needed to be duplicated for the assessment:
 
-![Adrich Graph][/adrich-graph.png]
+![Adrich Graph][adrich-graph.png]
 
 
 ## Developers Note
