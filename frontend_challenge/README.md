@@ -12,17 +12,19 @@ To test the code, you need to start a local node server. It is important that yo
 Once you have done that and cloned the project on your computer, you need to install the server dependencies with  `npm install` in your terminal.
 
 
-After that, you can run the node server with `npm start`. This should pop up a window in your browser with `localhost:3000` as the web address.
+After that, you can run the node server with:
+`npm start`
+This should pop up a window in your browser with `localhost:3000` as the web address.
 
 
 You should see a graph that looks like this:
 
-![My Graph][/my-graph.jpg]
+![My Graph][/my-graph.png]
 
 
 Below is the graph that needed to be duplicated for the assessment:
 
-![Adrich Graph][/adrich-graph.jpg]
+![Adrich Graph][/adrich-graph.png]
 
 
 ## Developers Note
