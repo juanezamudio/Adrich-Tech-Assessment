@@ -16,18 +16,18 @@ Once you have done that and cloned the project on your computer, you need to ins
 ```
 npm install
 ```
-in your terminal.
 
 
 After that, you can run the node server with:
 ```
 npm start
 ```
-This should pop up a window in your browser with: 
+
+
+This should pop up a window in your browser with a web address: 
 ```
 localhost:3000
 ```
-as the web address.
 
 ## Result
 
@@ -51,10 +51,10 @@ However, due to time constraints, there are some improvements that need to be ma
 - [ ] Find a way to have 12-hour time charted on the x-axis as detailed in the example graph.
      
      
-      --> *Chart.js does not allow for vertical lines to be drawn on labels of the same value on the x-axis*
+     *Chart.js does not allow for vertical lines to be drawn on labels of the same value on the x-axis*
     
     
 - [ ] Continue learning about Express/Jade to be able to interpolate the Javascript data in the section of the graph that details when the product is most often used.
 
 
-      --> *Although I had the proper variable values to interpolate the data, I had to hardcode the answer as I was unable to interpolate the data properly.*
+     *Although I had the proper variable values to interpolate the data, I had to hardcode the answer as I was unable to interpolate the data properly.*
