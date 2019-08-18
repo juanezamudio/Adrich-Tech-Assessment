@@ -51,10 +51,10 @@ However, due to time constraints, there are some improvements that need to be ma
 - [ ] Find a way to have 12-hour time charted on the x-axis as detailed in the example graph.
      
      
-     *Chart.js does not allow for vertical lines to be drawn on labels of the same value on the x-axis*
+     **Chart.js does not allow for vertical lines to be drawn on labels of the same value on the x-axis**
     
     
 - [ ] Continue learning about Express/Jade to be able to interpolate the Javascript data in the section of the graph that details when the product is most often used.
 
 
-     *Although I had the proper variable values to interpolate the data, I had to hardcode the answer as I was unable to interpolate the data properly.*
+     **Although I had the proper variables and values to interpolate the data, I had to hardcode the answer as I did not know how to properly interpolate the data.**
