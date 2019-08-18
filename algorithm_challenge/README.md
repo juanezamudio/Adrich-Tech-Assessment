@@ -10,6 +10,8 @@ I tried to cover as many test cases that I could think of but please let me know
 
 After cloning my assessment to your local computer, run the following command-line command to see that my unit tests pass:
 
-`python -m unittest -v algorithm_challenge_tester`
+```
+python -m unittest -v algorithm_challenge_tester
+```
 
 **Note:** Make sure that you are in the proper directory.
