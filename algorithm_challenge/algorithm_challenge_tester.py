@@ -27,6 +27,25 @@ class TestPrintDirections(unittest.TestCase):
 
         print("-------------------------------------")
 
+    def test_print_directions_empty_end(self):
+        print("\n")
+        initial = [4,2,5,1,3,0]
+        target = [1,5,3,2,4,0]
+
+        print_directions(initial, target)
+
+        self.assertTrue(check_correct(initial, target))
+
+        print("-------------------------------------")
+
+        initial = [3,5,4,2,1,0]
+        target = [4,1,3,5,2,0]
+
+        print_directions(initial, target)
+        self.assertTrue(check_correct(initial, target))
+
+        print("-------------------------------------")
+
     def test_print_directions_equal(self):
         print("\n")
         initial = [0,1,5,3,2,4]
@@ -59,8 +78,8 @@ class TestPrintDirections(unittest.TestCase):
 
         print("-------------------------------------")
 
-        initial = [3,5,0,4,2,1]
-        target = [4,1,3,0,5,2]
+        initial = [3,5,4,0,2,1]
+        target = [4,1,0,3,5,2]
 
         print_directions(initial, target)
         self.assertTrue(check_correct(initial, target))
@@ -98,7 +117,7 @@ class TestPrintDirections(unittest.TestCase):
         print("-------------------------------------")
         
 
-    def test_print_directions_reverse(self):
+    def test_print_directions_reversed(self):
         print("\n")
         initial = [0,1,2,3,4,5]
         target = [5,4,3,2,1,0]
@@ -143,9 +162,6 @@ class TestPrintDirections(unittest.TestCase):
         target = [0,1,2,3,4,5]
         random.shuffle(target)
 
-        print(initial)
-        print(target)
-
         print_directions(initial, target)
 
         self.assertTrue(check_correct(initial,target))
@@ -159,9 +175,6 @@ class TestPrintDirections(unittest.TestCase):
 
         target = [0,1,2,3,4,5]
         random.shuffle(target)
-
-        print(initial)
-        print(target)
 
         print_directions(initial, target)
 
@@ -177,9 +190,6 @@ class TestPrintDirections(unittest.TestCase):
         target = [3,2,5,1,0,4]
         random.shuffle(target)
 
-        print(initial)
-        print(target)
-
         print_directions(initial, target)
 
         self.assertTrue(check_correct(initial,target))
@@ -193,9 +203,6 @@ class TestPrintDirections(unittest.TestCase):
 
         target = [3,2,5,1,0,4]
         random.shuffle(target)
-
-        print(initial)
-        print(target)
 
         print_directions(initial, target)
 
@@ -211,25 +218,19 @@ class TestPrintDirections(unittest.TestCase):
         target = [4,5,1,2,3,0]
         random.shuffle(target)
 
-        print(initial)
-        print(target)
-
         print_directions(initial, target)
 
         self.assertTrue(check_correct(initial,target))
 
         print("-------------------------------------")
 
-    def test_print_directions_random_six(self):
+    def test_print_directions_random_big(self):
         print("\n")
         initial = [3,9,1,10,2,8,4,5,0,6,7]
         random.shuffle(initial)
 
         target = [4,7,5,8,1,6,9,2,10,3,0]
         random.shuffle(target)
-
-        print(initial)
-        print(target)
 
         print_directions(initial, target)
 

@@ -70,6 +70,9 @@ def print_directions(initial, target):
         initial: list -- The initial arrangement list
         target: list -- The target arrangement list
     """
+    print("Initial: " + str(initial))
+    print("Target: " + str(target) + "\n")
+
     if (check_if_empty_input(initial, target)):
         print("\nNo initial or target positions inputted. Please input two lists.")
         return
@@ -78,7 +81,6 @@ def print_directions(initial, target):
         print("\nCars already in target position. No moves needed!")
         return
         
-
     hashtable = create_hashtable(target)
 
     '''
@@ -119,48 +121,71 @@ def print_directions(initial, target):
 
         print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
 
-    values = hashtable.values()
-    i = 0
+    values = hashtable.values()     # a list of the correct values (car spots) in the hashtable
+
+    i = 0                           # the counter that helps find a car to 
+                                    # move to empty in the start of the initial list
+
+    # while initial arrangement != target arrangement
     while (not check_correct(initial, target)):
-        empty_spot = initial.index(0)
-        check_spot = True
+        empty_spot = initial.index(0)       # position of the empty spot
+        check_spot = True                   # a boolean for whether a valid spot has been found
         
+        # if the correct position of the empty spot 
+        # is the spot where empty currently is
         if (hashtable[0] == empty_spot):
             counter = i
             
+            # find a car to move into the empty spot
             while check_spot:
                 temp = initial[counter]
                 temp_spot = initial.index(temp)
 
+                # check if car spot is not currently in target spot
                 if (temp_spot != hashtable[temp]):
                     check_spot = False
 
-                counter -= 1
+                counter -= 1    # decrease counter by 1 to find a new car to put in empty
             else:
+                # finally: once car is found, move it to empty 
+                # and increase i by 1 and print move steps
                 swap_positions(initial, temp, temp_spot, empty_spot)
                 i+=1
                 print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
         else:
+            # otherwise: find the car whose target position 
+            # is the current empty space
             temp = initial[initial.index(values.index(initial.index(0)))]
             temp_spot = initial.index(temp)
             counter = 1
 
+            # if the car's initial position is equal to the target position of empty
             if (temp_spot == hashtable[0]):
+
+                # find a new car to swap with empty
                 while check_spot:
                     temp = initial[len(initial) - counter]
                     temp_spot = initial.index(temp)
                     
+                    # check if car spot is not currently in target spot 
+                    # and if there is even a car in the initial position to swap 
+                    # with to prevent deadlock by not moving any car at all
                     if (temp_spot != hashtable[temp] and temp != 0):
                         check_spot = False
 
-                    counter += 1
+                    counter += 1    # increase counter by 1 to find a new car to put in empty
                 else:
+                    # finally: once car is found, move it to empty
                     swap_positions(initial, temp, temp_spot, empty_spot)
             else:
+                # else: just place the car whose target position 
+                # is the current empty space, increase i by 1, and print move steps 
                 swap_positions(initial, temp, temp_spot, empty_spot)
                 i+=1
                 print("Move car from space " + str(temp_spot) + " to space " + str(empty_spot))
     else:
-        print("\nCars in target position!")
-        print(initial)
-        print(target)
+        # finally: once initial == target then print success 
+        # message and the arrangement of initial and target
+        print("\nCars in target position!\n")
+        print("Initial: " + str(initial))
+        print("Target: " + str(target) + "\n")
